@@ -116,4 +116,37 @@ document.addEventListener('DOMContentLoaded', () => {
   animateElements.forEach((el) => {
     observer.observe(el);
   });
+
+  // Intersection Observer for divider lines
+  const dividerObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        // When the divider comes into view
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+        // Optional: Reset when out of view for re-animation when scrolling back up
+        else {
+          entry.target.classList.remove('in-view');
+        }
+      });
+    },
+    {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.2, // Trigger when 20% of the element is visible
+    }
+  );
+
+  // Observe all divider lines
+  const dividers = document.querySelectorAll('.divider-line');
+  dividers.forEach((divider) => {
+    dividerObserver.observe(divider);
+
+    // Check if the divider is in a dark section and add appropriate class
+    if (divider.closest('.about')) {
+      divider.classList.add('dark');
+    }
+  });
 });
+

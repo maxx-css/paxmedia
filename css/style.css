@@ -269,3 +269,45 @@ footer {
 .mobile-links a:hover {
     opacity: 0.7;
 }
+
+/* Dividing line styles */
+.divider-line {
+    width: 0%;
+    height: 1px;
+    background-color: #111;
+    margin: 80px 0;
+    position: relative;
+    transform-origin: left center;
+    opacity: 0.9;
+    transition: 
+        width 1.4s cubic-bezier(0.25, 1, 0.5, 1) 0.2s, /* slightly delayed with custom ease */
+        opacity 0.6s ease;
+}
+
+.divider-line.in-view {
+    width: 100%;
+    opacity: 1;
+}
+
+/* Adjust project item margin for better spacing with dividers */
+.project-item {
+    margin-bottom: 0;
+}
+
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* Responsive adjustments for divider lines */
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .divider-line {
+        margin: 50px 0;
+    }
+}
